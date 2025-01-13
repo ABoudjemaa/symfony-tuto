@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <h1>Contact</h1>
+    {# <p>Feel free to contact me at <a href="mailto:{{ email }}">{{ email }}</a>.</p> #}
+    <p>Or use the form below:</p>
+
+    {{ form_start(form, {'attr': {'class': 'contact-form'}}) }}
+        {{ form_row(form.name, {'attr': {'class': 'form-group'}}) }}
+        {{ form_row(form.email, {'attr': {'class': 'form-group'}}) }}
+        {{ form_row(form.message, {'attr': {'class': 'form-group'}}) }}
+        {{ form_row(form.service, {'attr': {'class': 'form-group'}}) }}
+
+    {{ form_end(form) }}
+{% endblock %}

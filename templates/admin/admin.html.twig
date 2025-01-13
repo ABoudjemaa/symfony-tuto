@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      {% block title %}
+        Administration
+      {% endblock %}
+    </title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>" />
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          color: #333;
+        }
+        nav {
+          background-color: #333;
+          padding: 10px;
+        }
+        nav a {
+          color: #fff;
+          text-decoration: none;
+          padding: 10px;
+        }
+        nav a:hover {
+          background-color: #555;
+        }
+        .active {
+          text-white bg-blue-500 rounded-lg p-2;
+        }
+      </style>
+    {% block style %}
+      
+    {% endblock %}
+  </head>
+  <body class="max-w-5xl m-auto">
+    <nav class="w-full flex items-center justify-start gap-5">
+      <a href="{{ path('admin.recipe.index') }}" class="pr-5 underline underline-offset-1">Administration</a>
+      <a href="{{ path('admin.recipe.index') }}" class="{{ app.current_route starts with 'admin.recipe.' ? 'active' : '' }}">Recettes</a>
+      <a href="{{ path('admin.category.index') }}" class="{{ app.current_route starts with 'admin.category.' ? 'active' : '' }}">Categories</a>
+    </nav>
+    {% include "partials/flash.html.twig" %}
+    {% block body %}
+
+    {% endblock %}
+  </body>
+</html>

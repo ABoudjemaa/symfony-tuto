@@ -1,0 +1,86 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}
+  Category Index
+{% endblock %}
+{% block style %}
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    
+    tr:hover {
+      background-color: #ddd;
+    }
+    
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #c82333;
+    }
+    
+    form {
+      display: inline;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <h1>Category Index</h1>
+  <a href="{{ path('admin.category.create') }}">Create new</a>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+        <tr>
+          <td>{{ category.id }}</td>
+          <td>{{ category.name }}</td>
+          <td>
+            <a href="{{ path('admin.category.edit', { id: category.id }) }}">edit</a>
+            <form action="{{ path('admin.category.delete', { id: category.id }) }}" method="post">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button type="submit">delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% block style %}
+    <style>
+        .flash-message {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+    </style>
+{% endblock %}
+
+{% for type, message in app.flashes %}
+    <div class="flash-message">{{ message|join('. ') }}</div>.
+{% endfor %}

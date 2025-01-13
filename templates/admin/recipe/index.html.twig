@@ -1,0 +1,78 @@
+{% extends 'admin/admin.html.twig' %}
+
+{% block title %}
+  Toutes les recettes
+{% endblock %}
+
+{% block style %}
+  <style>
+    .recipe-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .recipe-table th, .recipe-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    .recipe-table th {
+      background-color: #f8f9fa;
+    }
+    .recipe-table a {
+      text-decoration: none;
+      color: #007bff;
+    }
+    .recipe-table a:hover {
+      text-decoration: underline;
+    }
+    .recipe-table form {
+      display: inline;
+    }
+    .recipe-table button {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .recipe-table button:hover {
+      background-color: #c82333;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div>
+    <h1>Toutes les recettes</h1>
+    <a href="{{ path('admin.recipe.create') }}">Creer</a>
+
+    <table class="recipe-table">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Categories</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for recipe in recipes %}
+          <tr>
+            <td>
+              <a href="{{ path('admin.recipe.edit', { id: recipe.id }) }}">{{ recipe.getTitle() }}</a>
+            </td>
+            <td>{{ recipe.category.name | default('') }}
+            </td>
+            <td>
+              <a href="{{ path('admin.recipe.edit', { id: recipe.id }) }}">Editer</a>
+              <form action="{{ path('admin.recipe.delete', { id: recipe.id }) }}" method="post">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">Supprimer</button>
+              </form>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
