@@ -22,7 +22,11 @@ class RecipeController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(Request $request, RecipeRepository $recipeRepository): Response
     {
-        $recipes = $recipeRepository->findAll();
+        $page = $request->query->getInt('page', 1);
+        $limit = 1;
+        $recipes = $recipeRepository->paginateRecipes($page, $limit);
+
+//        $recipes = $recipeRepository->findAll();
         return $this->render('admin/recipe/index.html.twig', [
             'recipes' => $recipes,
         ]);
