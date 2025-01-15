@@ -18,7 +18,7 @@ class RecipeRepository extends ServiceEntityRepository
         parent::__construct($registry, Recipe::class);
     }
 
-    public function paginateRecipes(int $page = 1, int $limit = 10): PaginationInterface
+    public function paginateRecipes(int $page = 1, int $limit = 2): PaginationInterface
     {
         return $this->paginator->paginate(
             $this->createQueryBuilder('r')
