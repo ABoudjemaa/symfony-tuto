@@ -31,7 +31,7 @@ class Recipe
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 10)]
     #[Assert\Regex('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', message: "valeur invalide")]
-    #[Groups(['recipes.index'])]
+    #[Groups(['recipes.index', 'recipes.create'])]
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
@@ -47,7 +47,7 @@ class Recipe
     #[ORM\Column]
     #[Assert\Positive()]
     #[Assert\NotBlank()]
-    #[Groups(['recipes.index', 'recipes.create'])]
+    #[Groups(["recipes.create", "recipes.index"])]
     private ?int $duration = null;
 
     #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'recipes')]
