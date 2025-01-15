@@ -25,7 +25,7 @@ class Recipe
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(min: 10)]
-    #[Groups(['recipes.index'])]
+    #[Groups(['recipes.index', 'recipes.create'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
@@ -35,7 +35,7 @@ class Recipe
     private ?string $slug = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['recipes.show'])]
+    #[Groups(['recipes.show', 'recipes.create'])]
     private ?string $content = null;
 
     #[ORM\Column]
@@ -47,7 +47,7 @@ class Recipe
     #[ORM\Column]
     #[Assert\Positive()]
     #[Assert\NotBlank()]
-    #[Groups(['recipes.index'])]
+    #[Groups(['recipes.index', 'recipes.create'])]
     private ?int $duration = null;
 
     #[ORM\ManyToOne(cascade: ['persist'], inversedBy: 'recipes')]
