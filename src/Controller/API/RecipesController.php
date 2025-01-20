@@ -40,7 +40,6 @@ class RecipesController extends AbstractController
     }
 
     #[Route('/api/recipes', name: 'api.recipes.create', methods: ['POST'])]
-    #[Route('/api/recipes', name: 'api.recipes.create', methods: ['POST'])]
     public function create(
         Request                $request,
         SerializerInterface    $serializer,
